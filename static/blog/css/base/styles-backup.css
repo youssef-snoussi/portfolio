@@ -1,0 +1,111 @@
+:root {
+    /* Original color palette */
+    --bg-color-light: #f2f2f2;
+    --bg-color-dark: #1B1A55;
+    --text-color-light: #333;
+    --text-color-dark: #fff;
+    --bg-color-comment-even: #9290C3;
+    --bg-color-comment-odd: #535C91;
+
+    /* Typography */
+    --font-family: 'Helvetica', sans-serif;
+
+    /* Spacing */
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+
+    /* Border Radius */
+    --border-radius: 4px;
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-dark);
+}
+
+a {
+    color: var(--bg-color-dark);
+    text-decoration: none;
+}
+
+h1, h2 {
+    font-weight: normal;
+    color: var(--text-color-dark);
+}
+
+h1 {
+    border-bottom: 1px solid #bbb;
+    padding-bottom: var(--space-sm);
+}
+
+h2 {
+    margin-top: var(--space-lg);
+}
+
+/* Flexbox layout for main content and sidebar */
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#content {
+    flex: 1;
+    min-width: 60%;
+    padding: var(--space-md);
+}
+
+#sidebar {
+    flex: 1;
+    min-width: 30%;
+    background: var(--bg-color-light);
+    padding: var(--space-md);
+    border-left: 1px solid #ddd;
+}
+
+.post-item {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-light);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-md);
+}
+
+.search-bar {
+    padding: var(--space-sm);
+    border: 2px solid var(--bg-color-dark);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-md);
+    width: 100%;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        order: -1; /* This will move the sidebar above the content on smaller screens */
+    }
+}
+
+input, textarea {
+    width: 100%;
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+}
+
+input[type=submit] {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-light);
+    border: none;
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}

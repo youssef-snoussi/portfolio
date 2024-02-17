@@ -1,0 +1,60 @@
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+
+<script>
+    document.getElementById('post-comments').addEventListener('htmx:afterSwap', function(event) {
+        var commentDivs = document.querySelectorAll('#post-comments .comment');
+        commentDivs.forEach(function(commentDiv, index) {
+            commentDiv.dataset.commentIndex = index + 1; // Update the comment index
+        });
+    });
+</script>
+
+<!-- Load template_partials -->
+{% load partials %}
+
+{% block title %} {{ post }} {% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p class="date">
+        published at {{ post.published_at }} by {{ post.author }}
+    </p>
+    {{ post.body|markdown }}
+    <p>
+        <a href="{% url 'blog:post_share' post.id %}">
+            Share this post
+        </a>
+    </p>
+
+    <h2>Similar posts</h2>
+    {% for post in similar_posts %}
+        <p>
+            <a href="{{ post.get_absolute_url }}">{{ post }}</a>
+        </p>
+        {% empty %}
+            There are no similar posts yet!
+    {% endfor %}
+
+    {% with comments.count as total_comments %}
+        <h2>
+            {{ total_comments }} comment{{ total_comments|pluralize }}
+        </h2>
+    {% endwith %}
+    <div id="post-comments">
+        {% for comment in comments %}
+            {% partialdef comment_parial inline=True %}
+            <div class="comment">
+                <p class="info">
+                    Comment {{ forloop.counter }} by {{ comment.name }}
+                    {{ comment.created_at }}
+                </p>
+                {{ comment.body|linebreaks }}
+            </div>
+            {% endpartialdef %}
+            {% empty %}
+            <p>There are no comments.</p>
+        {% endfor %}
+    </div>
+    {% include "blog/post/includes/comment_form.html" %}
+{% endblock %}

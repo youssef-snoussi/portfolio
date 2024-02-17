@@ -1,0 +1,33 @@
+
+
+<aside id="sidebar">
+    <div>
+        <h2>My blog</h2>
+        <p>
+            There are currently {% total_posts %} on this blog.
+        </p>
+    </div>
+    <div class="search">
+        <div class="search-bar">
+            <input type="search"
+                   name="search"
+                   placeholder="Begin Typing To Search..."
+                   hx-post="{% url 'blog:search' %}"
+                   hx-trigger="input changed delay:1s, search"
+                   hx-target="#search-results"
+                   hx-indicator=".htmx-indicator">
+        </div>
+        <div id="search-results">
+            {% partialdef search-result inline=True &}
+                {% for post in search_posts %}
+                    <ul>
+                        <li>
+                            <a href="{{ post.get_absolute_url }}"> {{ post }} </a>
+                        </li>
+                    </ul>
+                    {% empty %}
+                {% endfor %}
+            {% endpartialdef %}
+        </div>
+    </div>
+</aside>

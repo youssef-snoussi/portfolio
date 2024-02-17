@@ -1,0 +1,12 @@
+<h2>Add a new comment</h2>
+<form
+    hx-post="{% url 'blog:post_comment' post.id %}"
+    hx-target="#post-comments"
+    hx-swap="beforeend"
+    hx-on::after-request="this.reset()">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p>
+        <input type="submit" value="Add comment">
+    </p>
+</form>

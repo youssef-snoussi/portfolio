@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="{% static 'htmx.min.js' %}" defer></script>
+  <title>My Portfolio</title>
+</head>
+
+<body>
+    <div class="flex h-screen bg-gray-200">
+        <!-- Main Content -->
+        <div>
+            <!-- Header -->
+            <header>
+                <div>
+                    <h1>{% block header %}Youssef SNOUSSI{% endblock %}</h1>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main>
+                <div>
+                    {% block content %}{% endblock %}
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; {% now 'Y' %} Your Portfolio. All rights reserved.</p>
+    </footer>
+
+    {% block body_extra %}{% endblock %}
+</body>
+</html>
