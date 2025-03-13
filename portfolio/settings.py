@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wzqh$hiw4g^562i)qv^n^@%#ycpja*ow6o7_8)67!_tm87&b^p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [ "*" ]
 
@@ -45,10 +45,12 @@ INSTALLED_APPS = [
     'django_htmx',
     'rest_framework',
     'template_partials',
-    # Custom apps
+    # Custom apps Blog
     'content.apps.ContentConfig',
     "core.apps.CoreConfig",
     "blog.apps.BlogConfig",
+    # custom apps Social network
+    "account.apps.AccountConfig",
 ]
 
 MIDDLEWARE = [

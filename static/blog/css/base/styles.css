@@ -21,7 +21,7 @@
     --space-lg: 24px;
 
     /* Border Radius */
-    --border-radius: 4px;
+    --border-radius: 10px;
 
     /* Shadows */
     --shadow: 0px 2px 4px rgba(0,0,0,0.14), 0px 3px 4px rgba(0,0,0,0.12), 0px 1px 5px rgba(0,0,0,0.2);
@@ -82,15 +82,18 @@ h2 {
     margin-bottom: var(--space-md);
 }
 
+div {
+  margin-top: 20px;
+}
+
 .search {
-    border: 2px solid var(--primary-color);
-    border-radius: var(--border-radius);
     margin-bottom: var(--space-md);
 }
 
 .search-bar {
+    border-radius: var(--border-radius);
     padding: var(--space-sm);
-    width: 100%;
+    width: 90%;
 }
 
 #search-results ul {
@@ -103,6 +106,16 @@ h2 {
 }
 
 #search-results ul li: hover {
+    background-color: var(--primary-color);
+}
+
+ul {
+    padding: 8px;
+}
+
+ul li {
+    list-style: none;
+    cursor: pointer;
 }
 
 /* Responsiveness */
@@ -142,6 +155,8 @@ input[type=submit] {
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
+        justify-content: space-between; /* Distribute items along the main axis */
+        gap: var(--space-sm);
     }
 
     #content, #sidebar {
